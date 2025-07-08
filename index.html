@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alyomi - 알리에서 찾은 귀요미</title>
+    
+    <link href="/dist/output.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-alyomi-bg font-sans text-gray-700">
+
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/">
+                    <img src="/assets/img/alyomi_logo.png" alt="Alyomi Logo" class="h-10 md:h-12">
+                </a>
+                
+                <nav class="hidden md:flex items-center gap-8 font-bold">
+                    <a href="#" class="hover:text-alyomi-pink transition-colors">캐릭터</a>
+                    <a href="#" class="hover:text-alyomi-pink transition-colors">문구</a>
+                    <a href="#" class="hover:text-alyomi-pink transition-colors">인형</a>
+                    <a href="#" class="hover:text-alyomi-pink transition-colors">SALE</a>
+                </nav>
+
+                <button id="hamburger-button" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <nav id="mobile-nav" class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-white/90 backdrop-blur-xl z-40">
+        <div class="flex flex-col items-center justify-center h-full gap-10">
+             <a href="#" class="text-2xl font-bold">캐릭터</a>
+             <a href="#" class="text-2xl font-bold">문구</a>
+             <a href="#" class="text-2xl font-bold">인형</a>
+             <a href="#" class="text-2xl font-bold">SALE</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 mt-8">
+        
+        <section class="bg-alyomi-yellow rounded-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden p-8 gap-6">
+            <div class="text-center md:text-left w-full md:w-3/5">
+                <h1 class="text-3xl lg:text-4xl font-extrabold text-alyomi-coral leading-tight">
+                    알리에서 찾은<br>귀요미 여기 다 있다!
+                </h1>
+                <p class="mt-2 text-lg text-gray-600">세상 모든 귀여움, 알요미에서</p>
+            </div>
+            <div class="hidden md:block md:w-2/5">
+                <img src="/assets/img/alyomi_banner.png" alt="Cute characters banner" class="w-full h-auto">
+            </div>
+        </section>
+
+        <section class="py-16">
+            <h2 class="text-3xl font-extrabold text-center mb-8">✨ 베스트 아이템 50</h2>
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+                <p class="col-span-full text-center">귀요미들을 불러오는 중...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 text-gray-500 text-sm text-center py-10 mt-8">
+        <p>&copy; 2025 Alyomi. All rights reserved.</p>
+        <p class="mt-1">알요미는 AliExpress 제휴 프로그램을 통해 수수료를 받을 수 있습니다.</p>
+    </footer>
+
+    <script type="module" src="/src/js/home.js"></script>
+
+</body>
+</html>
