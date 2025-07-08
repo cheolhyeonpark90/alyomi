@@ -1,63 +1,92 @@
-import { getProducts } from './api.js';
-import { createProductCard } from './ui.js';
-import { sortProductsByRank } from './ranking.js';
+import { initializeRouter } from './router.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  
-  const hamburgerButton = document.getElementById('hamburger-button');
-  const mobileMenuModal = document.getElementById('mobile-menu-modal');
-  const modalOverlay = document.getElementById('modal-overlay');
-  const modalPanel = document.getElementById('modal-panel');
-  const closeModalButton = document.getElementById('close-modal-button');
+async function main() {
+    // 햄버거 메뉴 관련 DOM 요소 및 이벤트 리스너
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenuModal = document.getElementById('mobile-menu-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalPanel = document.getElementById('modal-panel');
+    const closeModalButton = document.getElementById('close-modal-button');
 
-  const openMenu = () => {
-    mobileMenuModal.classList.remove('hidden');
-    setTimeout(() => {
-      modalOverlay.classList.add('opacity-100');
-      // ✅ Y축(세로) -> X축(가로) 애니메이션으로 변경
-      modalPanel.classList.remove('translate-x-full');
-    }, 10);
-  };
+    const openMenu = () => {
+        mobileMenuModal.classList.remove('hidden');
+        setTimeout(() => {
+            modalOverlay.classList.add('opacity-100');
+            modalPanel.classList.remove('translate-x-full');
+        }, 10);
+    };
 
-  const closeMenu = () => {
-    modalOverlay.classList.remove('opacity-100');
-    // ✅ Y축(세로) -> X축(가로) 애니메이션으로 변경
-    modalPanel.classList.add('translate-x-full');
-    setTimeout(() => {
-      mobileMenuModal.classList.add('hidden');
-    }, 300);
-  };
+    const closeMenu = () => {
+        modalOverlay.classList.remove('opacity-100');
+        modalPanel.classList.add('translate-x-full');
+        setTimeout(() => {
+            mobileMenuModal.classList.add('hidden');
+        }, 300);
+    };
 
-  hamburgerButton.addEventListener('click', openMenu);
-  modalOverlay.addEventListener('click', closeMenu);
-  closeModalButton.addEventListener('click', closeMenu);
-  
-  const searchIconButton = document.getElementById('search-icon-button');
-  const searchBar = document.getElementById('search-bar');
-
-  searchIconButton.addEventListener('click', () => {
-      searchBar.classList.toggle('hidden');
-      if (!searchBar.classList.contains('hidden')) {
-          searchBar.querySelector('input').focus();
-      }
-  });
-
-  const renderProducts = async () => {
-    const productGrid = document.getElementById('product-grid');
-    productGrid.innerHTML = '<p class="col-span-full text-center">귀요미들을 불러오는 중...</p>';
+    hamburgerButton.addEventListener('click', openMenu);
+    modalOverlay.addEventListener('click', closeMenu);
+    closeModalButton.addEventListener('click', closeMenu);
     
-    const products = await getProducts();
+    // 데스크탑 검색창 관련 DOM 요소 및 이벤트 리스너
+    const searchIconButton = document.getElementById('search-icon-button');
+    const searchBar = document.getElementById('search-bar');
 
-    if (!products || products.length === 0) {
-      productGrid.innerHTML = '<p class="col-span-full text-center">상품을 불러오는 데 실패했어요. 😢</p>';
-      return;
-    }
+    searchIconButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchBar.classList.toggle('hidden');
+        if (!searchBar.classList.contains('hidden')) {
+            searchBar.querySelector('input').focus();
+        }
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!searchBar.classList.contains('hidden') && !searchBar.contains(e.target) && !searchIconButton.contains(e.target)) {
+            searchBar.classList.add('hidden');
+        }
+    });
 
-    const sortedProducts = sortProductsByRank(products);
-    const top50Products = sortedProducts.slice(0, 50);
+    // 검색 폼 제출 이벤트 설정
+    const setupSearch = () => {
+        const searchForms = [
+            document.getElementById('desktop-search-form'),
+            document.getElementById('mobile-search-form')
+        ];
+        searchForms.forEach(form => {
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const input = form.querySelector('input[type="text"]');
+                    const query = input.value.trim();
+                    if (query) {
+                        window.location.hash = `search=${encodeURIComponent(query)}`;
+                        if (!mobileMenuModal.classList.contains('hidden')) {
+                            closeMenu();
+                        }
+                    }
+                });
+            }
+        });
+    };
+    setupSearch();
+    
+    // 메뉴 링크 클릭 시 URL 해시 변경
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // 로고는 해시를 비우고, 나머지는 해시를 변경
+            const targetHash = e.currentTarget.id === 'logo-link' ? '' : e.currentTarget.hash;
+            if (window.location.hash !== targetHash) {
+                e.preventDefault();
+                window.location.hash = targetHash;
+            }
+            if (link.classList.contains('mobile-menu-link')) {
+                closeMenu();
+            }
+        });
+    });
 
-    productGrid.innerHTML = top50Products.map(createProductCard).join('');
-  };
+    // 라우터 초기화 (데이터 로딩 및 URL 감지 시작)
+    await initializeRouter();
+}
 
-  renderProducts();
-});
+document.addEventListener('DOMContentLoaded', main);

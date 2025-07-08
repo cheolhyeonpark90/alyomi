@@ -17,20 +17,20 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-3">
                 <div class="flex items-center gap-8">
-                    <a href="/">
+                    <a href="/" id="logo-link">
                         <img src="alyomi_logo.png" alt="Alyomi Logo" class="h-10 md:h-12">
                     </a>
                     <nav class="hidden md:flex items-center gap-4">
-                        <a href="#" class="font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">전체 상품</a>
-                        <a href="#" class="font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">핫딜 🔥</a>
-                        <a href="#" class="font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">천원의 행복</a>
+                        <a href="#all" class="main-menu-link font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">전체 상품</a>
+                        <a href="#hotdeal" class="main-menu-link font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">핫딜 🔥</a>
+                        <a href="#under1000" class="main-menu-link font-bold text-gray-700 hover:text-alyomi-pink px-3 py-2 rounded-lg transition-colors">천원의 행복</a>
                     </nav>
                 </div>
                 
                 <div class="flex items-center gap-4">
                     <nav class="hidden md:flex items-center gap-6 text-sm text-gray-500">
-                        <a href="#" class="hover:text-black transition-colors">이용안내</a>
-                        <a href="#" class="hover:text-black transition-colors">FAQ</a>
+                        <a href="#guide" class="main-menu-link hover:text-black transition-colors">이용안내</a>
+                        <a href="#faq" class="main-menu-link hover:text-black transition-colors">FAQ</a>
                     </nav>
                     <button id="search-icon-button" class="p-2 hidden md:block">
                         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -45,12 +45,12 @@
 
     <div id="search-bar" class="bg-white/90 backdrop-blur-sm p-4 border-b hidden">
         <div class="container mx-auto">
-            <div class="relative">
+            <form id="desktop-search-form" class="relative">
                 <input type="text" placeholder="귀여운 아이템을 찾아보세요..." class="w-full py-2 pl-10 pr-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-alyomi-pink">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -63,42 +63,109 @@
                     <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div class="relative mb-6">
+            <form id="mobile-search-form" class="relative mb-6">
                 <input type="text" placeholder="귀여운 아이템을 찾아보세요..." class="w-full py-2 pl-10 pr-4 border rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-alyomi-pink">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-            </div>
+            </form>
             <nav class="flex flex-col gap-2">
-                <a href="#" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors">✨ 전체 상품</a>
-                <a href="#" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors">🔥 핫딜</a>
-                <a href="#" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors">🪙 천원의 행복</a>
+                <a href="#all" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors mobile-menu-link">✨ 전체 상품</a>
+                <a href="#hotdeal" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors mobile-menu-link">🔥 핫딜</a>
+                <a href="#under1000" class="font-bold text-lg text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors mobile-menu-link">🪙 천원의 행복</a>
                 <hr class="my-4">
-                <a href="#" class="text-gray-500 p-4 rounded-lg hover:bg-gray-100 transition-colors">이용안내</a>
-                <a href="#" class="text-gray-500 p-4 rounded-lg hover:bg-gray-100 transition-colors">자주 묻는 질문(FAQ)</a>
+                <a href="#guide" class="text-gray-500 p-4 rounded-lg hover:bg-gray-100 transition-colors mobile-menu-link">이용안내</a>
+                <a href="#faq" class="text-gray-500 p-4 rounded-lg hover:bg-gray-100 transition-colors mobile-menu-link">자주 묻는 질문(FAQ)</a>
             </nav>
         </div>
     </div>
 
     <main class="container mx-auto px-4 mt-8">
-        <section class="bg-alyomi-yellow rounded-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden p-8 gap-6">
-            <div class="text-center md:text-left w-full md:w-3/5">
-                <h1 class="text-3xl lg:text-4xl font-extrabold text-alyomi-coral leading-tight">
-                    알리에서 찾은<br>귀요미 여기 다 있다!
-                </h1>
-                <p class="mt-2 text-lg text-gray-600">세상 모든 귀여움, 알요미에서</p>
-            </div>
-            <div class="hidden md:block md:w-2/5">
-                <img src="alyomi_banner.png" alt="Cute characters banner" class="w-full h-auto">
-            </div>
-        </section>
+        
+        <div id="home-view">
+            <section class="bg-alyomi-yellow rounded-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden p-8 gap-6">
+                <div class="text-center md:text-left w-full md:w-3/5">
+                    <h1 class="text-3xl lg:text-4xl font-extrabold text-alyomi-coral leading-tight">
+                        알리에서 찾은<br>귀요미 여기 다 있다!
+                    </h1>
+                    <p class="mt-2 text-lg text-gray-600">세상 모든 귀여움, 알요미에서</p>
+                </div>
+                <div class="hidden md:block md:w-2/5">
+                    <img src="alyomi_banner.png" alt="Cute characters banner" class="w-full h-auto">
+                </div>
+            </section>
+            <section class="py-16">
+                <h2 class="text-3xl font-extrabold text-center mb-8">✨ 베스트 아이템 50</h2>
+                <div id="product-grid-home" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"></div>
+            </section>
+        </div>
 
-        <section class="py-16">
-            <h2 class="text-3xl font-extrabold text-center mb-8">✨ 베스트 아이템 50</h2>
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                <p class="col-span-full text-center">귀요미들을 불러오는 중...</p>
-            </div>
-        </section>
+        <div id="collection-view" class="hidden">
+            <section class="py-12">
+                <h2 id="collection-title" class="text-3xl font-extrabold text-center mb-8"></h2>
+                <div id="category-filter" class="flex flex-wrap justify-center gap-3 mb-10"></div>
+                <div id="product-grid-collection" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"></div>
+                <nav id="pagination" class="flex justify-center items-center gap-4 mt-16 text-sm"></nav>
+            </section>
+        </div>
+
+        <div id="info-view" class="hidden">
+            <section class="py-12">
+                <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-extrabold text-center mb-10">✨ 이용안내</h2>
+                    <div class="space-y-6 text-gray-700 leading-relaxed">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Alyomi는 어떤 서비스인가요?</h3>
+                            <p>Alyomi(알요미)는 AliExpress에서 판매되는 귀엽고 사랑스러운 상품들을 큐레이션하여 보여드리는 제휴 마케팅 웹사이트입니다. 사용자는 Alyomi를 통해 상품을 쉽게 탐색하고, 최종 구매는 AliExpress에서 안전하게 진행할 수 있습니다.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">상품 가격은 정확한가요?</h3>
+                            <p>Alyomi에 표시되는 가격은 API를 통해 실시간으로 원화(KRW) 환산된 가격입니다. 다만, 쿠폰 적용, 판매자의 정책 변경, 배송비, VAT 등의 요인으로 실제 결제 금액과 약간의 차이가 발생할 수 있습니다.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">배송은 어떻게 진행되나요?</h3>
+                            <p>모든 상품의 주문, 결제, 배송 과정은 AliExpress에서 직접 처리합니다. 배송 관련 문의는 AliExpress 판매자에게 직접 문의하셔야 합니다.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">수익은 어떻게 발생하나요?</h3>
+                            <p>사용자가 Alyomi의 링크를 통해 AliExpress에서 상품을 구매하면, 저희는 제휴 프로그램에 따라 소정의 수수료를 받습니다. 이 수익은 더 좋은 상품을 큐레이션하고 사이트를 운영하는 데 사용됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="faq-view" class="hidden">
+            <section class="py-12">
+                <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-extrabold text-center mb-10">🤔 자주 묻는 질문 (FAQ)</h2>
+                    <div class="space-y-4">
+                        <details class="group p-4 rounded-lg bg-gray-50 cursor-pointer">
+                            <summary class="font-bold text-lg list-none flex justify-between items-center">
+                                <span>상품 결제는 어떻게 하나요?</span>
+                                <span class="group-open:rotate-180 transition-transform duration-300">&darr;</span>
+                            </summary>
+                            <p class="text-gray-600 mt-4 leading-relaxed">모든 상품의 결제는 AliExpress 사이트에서 직접 이루어집니다. Alyomi는 상품을 소개하고 연결해주는 역할만 하며, 결제 정보나 개인정보를 수집하지 않습니다.</p>
+                        </details>
+                        <details class="group p-4 rounded-lg bg-gray-50 cursor-pointer">
+                            <summary class="font-bold text-lg list-none flex justify-between items-center">
+                                <span>배송 기간은 얼마나 걸리나요?</span>
+                                <span class="group-open:rotate-180 transition-transform duration-300">&darr;</span>
+                            </summary>
+                            <p class="text-gray-600 mt-4 leading-relaxed">배송 기간은 판매자와 상품, 선택한 배송 옵션에 따라 다릅니다. 보통 5일~14일 정도 소요되지만, 정확한 정보는 AliExpress 상품 페이지에서 확인하실 수 있습니다.</p>
+                        </details>
+                        <details class="group p-4 rounded-lg bg-gray-50 cursor-pointer">
+                            <summary class="font-bold text-lg list-none flex justify-between items-center">
+                                <span>교환이나 환불은 어떻게 하나요?</span>
+                                <span class="group-open:rotate-180 transition-transform duration-300">&darr;</span>
+                            </summary>
+                            <p class="text-gray-600 mt-4 leading-relaxed">교환 및 환불 정책은 AliExpress의 규정과 각 판매자의 정책을 따릅니다. 문제가 발생한 경우, AliExpress 앱 또는 웹사이트의 주문 내역에서 '분쟁 제기(Open Dispute)'를 통해 판매자와 직접 해결하셔야 합니다.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </main>
 
     <footer class="bg-gray-100 text-gray-500 text-sm text-center py-10 mt-8">
