@@ -33,12 +33,12 @@ function renderCollectionView(category, page = 1) {
     hideAllViews();
     collectionView.classList.remove('hidden');
     document.getElementById('category-filter').classList.remove('hidden');
-    
+
     renderCategories(allProducts, category);
-    
+
     const filtered = category ? allProducts.filter(p => p.first_level_category_name === category) : allProducts;
     const sorted = sortProductsByRank(filtered);
-    
+
     document.getElementById('collection-title').textContent = `✨ ${category || '전체 상품'}`;
     renderProductPage(sorted, page);
     renderPagination(sorted.length, page, { type: 'category', value: category });
@@ -78,7 +78,7 @@ function renderDetailView(productId) {
 
     const hasDiscount = !isNaN(parseInt(product.discount, 10)) && parseInt(product.discount, 10) > 0;
     const smallImages = product.product_small_image_urls?.string || [];
-    
+
     // ✅ 1. 관련 상품 추천 로직
     const relatedProducts = allProducts
         .filter(p => p.first_level_category_name === product.first_level_category_name && p.product_id !== product.product_id)
@@ -97,7 +97,7 @@ function renderDetailView(productId) {
                         ${smallImages.length > 0 ? `
                             <div class="flex gap-2 mt-4 overflow-x-auto no-scrollbar pb-2">
                                 ${smallImages.map(imgUrl => `
-                                    <div class="aspect-square bg-gray-100 rounded-md overflow-hidden cursor-pointer border-2 border-transparent hover:border-alyomi-pink transition">
+                                    <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-md overflow-hidden cursor-pointer border-2 border-transparent hover:border-alyomi-pink transition">
                                         <img src="${imgUrl}" alt="Thumbnail image" referrerpolicy="no-referrer" class="w-full h-full object-cover product-thumbnail">
                                     </div>
                                 `).join('')}
@@ -109,7 +109,7 @@ function renderDetailView(productId) {
                         <h1 class="text-3xl md:text-4xl font-extrabold leading-snug">${product.product_title}</h1>
                         
                         <div class="flex items-center text-base text-gray-500 my-4 pb-4 border-b">
-                            <span>⭐ ${ (parseFloat(product.evaluate_rate) / 100 * 5).toFixed(1) }</span>
+                            <span>⭐ ${(parseFloat(product.evaluate_rate) / 100 * 5).toFixed(1)}</span>
                             <span class="mx-3 text-gray-300">|</span>
                             <span>${product.lastest_volume}개 판매</span>
                         </div>
@@ -177,7 +177,7 @@ function renderDetailView(productId) {
 
     // 썸네일 이미지 클릭 이벤트 설정
     const mainImage = document.getElementById('main-product-image');
-    if(mainImage) {
+    if (mainImage) {
         document.querySelectorAll('.product-thumbnail').forEach(thumb => {
             thumb.addEventListener('click', (e) => {
                 mainImage.src = e.target.src;
@@ -199,12 +199,12 @@ const handleRouteChange = () => {
     const category = params.get('category');
     const page = parseInt(params.get('page') || '1', 10);
     const searchQuery = params.get('search');
-    
+
     if (productId) {
         renderDetailView(productId);
     } else if (searchQuery) {
         const query = decodeURIComponent(searchQuery).toLowerCase();
-        const results = allProducts.filter(p => 
+        const results = allProducts.filter(p =>
             (p.product_title?.toLowerCase() || '').includes(query) ||
             (p.first_level_category_name?.toLowerCase() || '').includes(query) ||
             (p.keywords || []).join(' ').toLowerCase().includes(query)
@@ -218,7 +218,7 @@ const handleRouteChange = () => {
         const filtered = allProducts.filter(p => parseInt(String(p.target_sale_price).replace(/,/g, ''), 10) <= 1000);
         renderSpecialView(filtered, '🪙 천원의 행복', page, { type: 'special', value: 'under1000' });
     } else if (hash.startsWith('hotdeal')) {
-        const sortedByDiscount = [...allProducts].sort((a, b) => (parseInt(String(b.discount).replace('%','')) || 0) - (parseInt(String(a.discount).replace('%','')) || 0));
+        const sortedByDiscount = [...allProducts].sort((a, b) => (parseInt(String(b.discount).replace('%', '')) || 0) - (parseInt(String(a.discount).replace('%', '')) || 0));
         const top50HotDeal = sortedByDiscount.slice(0, 50);
         renderSpecialView(top50HotDeal, '🔥 핫딜', page, { type: 'special', value: 'hotdeal' });
     } else if (hash.startsWith('guide')) {
@@ -237,7 +237,7 @@ export async function initializeRouter() {
         document.getElementById('product-grid-home').innerHTML = '<p class="col-span-full text-center">상품 데이터 로딩에 실패했어요. 😢</p>';
         return;
     }
-    
+
     window.addEventListener('hashchange', handleRouteChange);
-    handleRouteChange(); 
+    handleRouteChange();
 }
