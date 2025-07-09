@@ -135,7 +135,7 @@ function renderDetailView(productId) {
                             </dl>
                             <dl class="flex">
                                 <dt class="w-24 font-semibold text-gray-500 flex-shrink-0">예상 배송</dt>
-                                <dd class="text-gray-800">${String(product.ship_to_days).replace(' days', '일 이내 배송 예정')}</dd>
+                                <dd class="text-gray-800">${String(product.ship_to_days).replace('Ship to KR in ', '').replace(' days', '일 이내 배송 예정')}</dd>
                             </dl>
                              <dl class="flex">
                                 <dt class="w-24 font-semibold text-gray-500 flex-shrink-0">판매자</dt>
