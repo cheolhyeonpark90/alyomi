@@ -44,15 +44,15 @@ export function createProductCard(product) {
         <h3 class="font-bold text-sm text-gray-800 line-clamp-2">${product.product_title}</h3>
         <div class="mt-2 mb-3">
           ${hasDiscount ? `
-            <div class="flex items-baseline justify-between">
-              <div>
-                <span class="text-xs text-gray-400 line-through">${originalPrice}원</span>
-                <span class="font-extrabold text-base text-red-600 ml-1">${displayPrice}원</span>
+            <div class="flex items-baseline justify-between gap-2">
+              <div class="min-w-0">
+                <span class="text-xs text-gray-400 line-through whitespace-nowrap">${originalPrice}원</span>
+                <span class="font-extrabold text-base text-red-600 ml-1 whitespace-nowrap">${displayPrice}원</span>
               </div>
-              <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">${discountValue}%</span>
+              <span class="flex-shrink-0 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">${discountValue}%</span>
             </div>
           ` : `
-            <p class="font-extrabold text-base text-gray-900">${displayPrice}원</p>
+            <p class="font-extrabold text-base text-gray-900 whitespace-nowrap">${displayPrice}원</p>
           `}
         </div>
         ${ratingHtml}
