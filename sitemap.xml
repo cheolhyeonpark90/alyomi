@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://alyomi.pages.dev/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alyomi.pages.dev/#all</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alyomi.pages.dev/#hotdeal</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alyomi.pages.dev/#under1000</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alyomi.pages.dev/#guide</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://alyomi.pages.dev/#faq</loc>
+    <priority>0.5</priority>
+  </url>
+</urlset>

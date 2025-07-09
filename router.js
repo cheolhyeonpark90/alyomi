@@ -65,8 +65,6 @@ function renderFaqView() {
     faqView.classList.remove('hidden');
 }
 
-// router.js
-
 function renderDetailView(productId) {
     hideAllViews();
     detailView.classList.remove('hidden');
@@ -84,7 +82,7 @@ function renderDetailView(productId) {
     // ✅ 1. 관련 상품 추천 로직
     const relatedProducts = allProducts
         .filter(p => p.first_level_category_name === product.first_level_category_name && p.product_id !== product.product_id)
-        .slice(0, 5); // 최대 5개
+        .slice(0, 10); // 최대 10개
 
     // 상세 페이지의 새로운 HTML 구조
     detailView.innerHTML = `
